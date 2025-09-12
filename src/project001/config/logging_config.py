@@ -86,35 +86,11 @@ def get_logging_config(pipeline_name: str) -> logging.Logger:
                 "formatter": "colored",
                 "filters": ["pipeline_name"],
             },
-            "debug_file": {
+            "log_file": {
                 "class": "logging.FileHandler",
                 "level": "DEBUG",
                 "formatter": "standard",
-                "filename": str(date_logs_dir / "debug.log"),
-                "filters": ["pipeline_name"],
-                "mode": "a",
-            },
-            "info_file": {
-                "class": "logging.FileHandler",
-                "level": "INFO",
-                "formatter": "standard",
-                "filename": str(date_logs_dir / "info.log"),
-                "filters": ["pipeline_name"],
-                "mode": "a",
-            },
-            "error_file": {
-                "class": "logging.FileHandler",
-                "level": "ERROR",
-                "formatter": "standard",
-                "filename": str(date_logs_dir / "error.log"),
-                "filters": ["pipeline_name"],
-                "mode": "a",
-            },
-            "warning_file": {
-                "class": "logging.FileHandler",
-                "level": "WARNING",
-                "formatter": "standard",
-                "filename": str(date_logs_dir / "warning.log"),
+                "filename": str(date_logs_dir / "app.log"),
                 "filters": ["pipeline_name"],
                 "mode": "a",
             }
@@ -122,18 +98,18 @@ def get_logging_config(pipeline_name: str) -> logging.Logger:
         "loggers": {
             "kedro": {
                 "level": "DEBUG",
-                "handlers": ["console", "debug_file", "info_file", "error_file", "warning_file"],
+                "handlers": ["console", "log_file"],
                 "propagate": False
             },
             "project001": {
                 "level": "DEBUG",
-                "handlers": ["console", "debug_file", "info_file", "error_file", "warning_file"],
+                "handlers": ["console", "log_file"],
                 "propagate": False
             }
         },
         "root": {
             "level": "DEBUG",
-            "handlers": ["console", "debug_file", "error_file", "warning_file"]
+            "handlers": ["console", "log_file"]
         }
     }
     

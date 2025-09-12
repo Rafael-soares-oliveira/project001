@@ -3692,6 +3692,10 @@ dependencies = [
     { name = "notebook" },
     { name = "pandas" },
     { name = "pytest" },
+<<<<<<< HEAD
+=======
+    { name = "ruff" },
+>>>>>>> af6bad4 (create pipelines, still have to create functions)
     { name = "scikit-learn" },
     { name = "seaborn" },
     { name = "tf-keras" },
@@ -3738,6 +3742,10 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'", specifier = "~=7.2" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = "~=3.0" },
     { name = "pytest-mock", marker = "extra == 'dev'", specifier = ">=1.7.1,<2.0" },
+<<<<<<< HEAD
+=======
+    { name = "ruff", specifier = ">=0.12.12" },
+>>>>>>> af6bad4 (create pipelines, still have to create functions)
     { name = "ruff", marker = "extra == 'dev'", specifier = "~=0.12.0" },
     { name = "scikit-learn", specifier = "~=1.5.1" },
     { name = "seaborn", specifier = "~=0.12.1" },

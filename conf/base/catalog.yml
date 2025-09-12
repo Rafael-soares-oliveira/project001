@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Here you can define all your data sets by using simple YAML syntax.
 #
 # Documentation for this file format can be found in "The Data Catalog"
@@ -94,3 +95,60 @@ dummy_confusion_matrix:
   type: matplotlib.MatplotlibWriter
   filepath: data/08_reporting/dummy_confusion_matrix.png
   versioned: true
+=======
+01_raw_ticker:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/01_raw/ticker
+
+01_raw_news:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/01_raw/news
+
+02_intermediate_ticker:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/02_intermediate/ticker
+
+02_intermediate_news:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/02_intermediate/news
+
+03_primary_ticker:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/03_primary/ticker
+
+03_primary_news:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/03_primary/news
+
+04_feature:
+  type: kedro_datasets.partitions.PartitionedDataSet
+  dataset:
+    type: pandas.ParquetDataSet
+    save_args:
+      index: False
+  path: data/04_feature
+>>>>>>> af6bad4 (create pipelines, still have to create functions)

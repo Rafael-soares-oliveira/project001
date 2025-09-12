@@ -23,6 +23,7 @@ dependencies = [
     "pytest>=7.4.4",
     "transformers>=4.56.1",
     "tf-keras>=2.20.1",
+    "ruff>=0.12.12",
 ]
 
 [project.scripts]

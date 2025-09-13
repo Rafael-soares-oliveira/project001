@@ -1,8 +1,6 @@
 """Test module for the logging configuration."""
 import logging
 import os
-import pytest
-from pathlib import Path
 from datetime import datetime
 
 from project001.config.logging_config import get_logging_config

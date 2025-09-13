@@ -38,3 +38,9 @@ The pipeline structure follow the data enginnering convention. <a href="https://
 - Console logging for real-time progress tracking.
 - File logging for persistent records, stored in data-based folders.
 - Log rotation to manage log file sizes.
+
+## Tests
+- Unit tests for individual components (nodes, functions) using pytest.
+- Integration tests to verify the pipeline end-to-end.
+- Data quality checks to ensure data integrity and consistency.
+- Tests for logging configuration.

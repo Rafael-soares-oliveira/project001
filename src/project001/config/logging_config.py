@@ -118,3 +118,55 @@ def get_logging_config(pipeline_name: str) -> logging.Logger:
     
     # Return the logger for the project
     return logging.getLogger("project001")
+
+def get_test_logging_config(test_name: str = "test_log") -> logging.Logger:
+    """
+    Configura o logger para testes, salvando os logs em um diretório separado.
+
+    Args:
+        test_name (str): Nome do arquivo de log de teste.
+
+    Returns:
+        logging.Logger: Logger configurado para testes.
+    """
+    # Diretório de logs de teste
+    test_logs_dir = Path("logs") / "tests"
+    test_logs_dir.mkdir(parents=True, exist_ok=True)
+
+    # Caminho completo do arquivo de log
+    log_file_path = test_logs_dir / f"{test_name}.log"
+
+    logging_config = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "standard": {
+                "format": "[%(asctime)s] %(levelname)s: %(message)s",
+                "datefmt": "%Y-%m-%d %H:%M:%S",
+            }
+        },
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "level": "INFO",
+                "formatter": "standard",
+            },
+            "test_file": {
+                "class": "logging.FileHandler",
+                "level": "DEBUG",
+                "formatter": "standard",
+                "filename": str(log_file_path),
+                "mode": "w",
+            }
+        },
+        "loggers": {
+            "test_logger": {
+                "level": "DEBUG",
+                "handlers": ["console", "test_file"],
+                "propagate": False
+            }
+        }
+    }
+
+    logging.config.dictConfig(logging_config)
+    return logging.getLogger("test_logger")

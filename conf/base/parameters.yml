@@ -1,6 +1,6 @@
 tickers:
-  - EMBR3.SA: embraer
-  - VALE3.SA: vale
+  EMBR3.SA: Embraer
+  VALE3.SA: Vale
 period: "2mo" # Period to get the data
 language: "pt" # News language
 days_back: 30 # Days back to get the news

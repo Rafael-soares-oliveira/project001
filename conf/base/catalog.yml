@@ -1,56 +1,63 @@
-01_raw_ticker:
-  type: kedro_datasets.partitions.PartitionedDataSet
+01_raw_stock:
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
-  path: data/01_raw/ticker
+  path: data/01_raw/stock
+  filename_suffix: .parquet
 
 01_raw_news:
-  type: kedro_datasets.partitions.PartitionedDataSet
-  credentials: news_api
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
   path: data/01_raw/news
+  filename_suffix: .parquet
 
-02_intermediate_ticker:
-  type: kedro_datasets.partitions.PartitionedDataSet
+02_intermediate_stock:
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
-  path: data/02_intermediate/ticker
+  path: data/02_intermediate/stock
+  filename_suffix: .parquet
 
 02_intermediate_news:
-  type: kedro_datasets.partitions.PartitionedDataSet
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
   path: data/02_intermediate/news
+  filename_suffix: .parquet
 
-03_primary_ticker:
-  type: kedro_datasets.partitions.PartitionedDataSet
+03_primary_stock:
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
-  path: data/03_primary/ticker
+  path: data/03_primary/stock
+  filename_suffix: .parquet
 
 03_primary_news:
-  type: kedro_datasets.partitions.PartitionedDataSet
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
   path: data/03_primary/news
+  filename_suffix: .parquet
 
 04_feature:
-  type: kedro_datasets.partitions.PartitionedDataSet
+  type: kedro_datasets.partitions.PartitionedDataset
   dataset:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     save_args:
       index: False
   path: data/04_feature
+  filename_suffix: .parquet
+

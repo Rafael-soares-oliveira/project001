@@ -5,9 +5,10 @@ from kedro.framework.hooks import hook_impl
 from kedro.io import DataCatalog
 from kedro.pipeline.node import Node
 from kedro.pipeline import Pipeline
+from kedro.config import OmegaConfigLoader
+from pathlib import Path
 
 from project001.config.logging_config import get_logging_config
-
 
 class ProjectHooks:
     """
@@ -52,3 +53,16 @@ class ProjectHooks:
             
             # Update logging with the current node's pipeline name
             get_logging_config(pipeline_name)
+
+class InjectApiKeyHook:
+    @hook_impl
+    def after_catalog_created(self, catalog: DataCatalog) -> DataCatalog:
+        conf_path = Path.cwd() / "conf"
+        conf_loader = OmegaConfigLoader(conf_source=conf_path)
+        credentials = conf_loader["credentials"]
+        api_key = credentials["news_api"]["api_key"]
+        
+        # Add the API key to the catalog credentials
+        catalog["news_api_key"] = api_key
+        
+        return catalog

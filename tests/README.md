@@ -66,7 +66,7 @@ Here is a breakdown of each test method within the class:
 - - <b>How it works:</b> It defines a set of expected column names for news articles and checks that this set is a subset of the columns in the DataFrame returned by _get_news_data.
 
 ## Test Documentation for _02_intermediate Pipeline
-This section provides a detailed overview of the unit tests for the _02_intermediate Kedro pipeline. The primary goal of this pipeline is to transform the raw data into a cleaned and structured format. These tests ensure that the data transformation and ingestion nodes (_transform_data and ingest_transformed_data) are robust and handle various scenarios correctly.
+This section provides a detailed overview of the unit tests for the _02_intermediate Kedro pipeline. The primary goal of this pipeline is to transform the raw data into a cleaned data without changing the original structure. These tests ensure that the data transformation and ingestion nodes (_transform_data and ingest_transformed_data) are robust and handle various scenarios correctly.
 
 `Test Class: TestIntermediatePipeline`
 All tests are organized within the TestIntermediatePipeline class. This class uses a setup_method to define common parameters used across multiple tests, such as tickers.
@@ -97,3 +97,41 @@ Here is a breakdown of each test method within the class:
 - <b>test_ingest_transformed_data_loader_exception:</b>
 - - <b>Purpose:</b> Verifies that the function can handle exceptions during data loading.
 - - <b>How it works:</b> It uses a mock loader that raises a ValueError and asserts that the function catches the exception and returns an empty dictionary for the stock data.
+
+
+## Test Documentation for _03_primary Pipeline
+This section provides a detailed overview of the unit tests for the _03_primary Kedro pipeline. The primary goal of this pipeline is to transform the cleaned data into a format that is ready for analysis without adding any new columns. These tests ensure that the data transformation and ingestion nodes (_apply_transformers and ingest_transformed_data) are robust and handle various scenarios correctly.
+
+`Test Class: TestPrimaryPipeline`
+All tests are organized within the TestPrimaryPipeline class. This class uses a setup_method to define common parameters used across multiple tests, such as tickers.
+
+<b>Individual Test Explanations</b>
+Here is a breakdown of each test method within the class:
+
+- <b>test_remove_columns:</b>
+- - <b>Purpose:</b> Verifies that the _remove_columns transformer correctly removes specified columns from the DataFrame.
+- - <b>How it works:</b> It creates a sample DataFrame with multiple columns and applies the _remove_columns transformer with a list of columns to remove. The test asserts that the resulting DataFrame no longer contains the specified columns.
+
+- <b>test_lower_case_text_columns:</b>
+- - <b>Purpose:</b> Ensures that the _lower_case_text_columns transformer correctly converts text columns to lowercase.
+- - <b>How it works:</b> It creates a sample DataFrame with text columns and applies the _lower_case_text_columns transformer. The test asserts that all text columns in the resulting DataFrame are in lowercase.
+
+- <b>test_round_numeric_columns:</b>
+- - <b>Purpose:</b> Verifies that the _round_numeric_columns transformer correctly float values to 2 decimal places.
+- - <b>How it works:</b> It creates a sample DataFrame with numeric columns and applies the _round_numeric_columns transformer. The test asserts that all numeric columns in the resulting DataFrame have been rounded to 2 decimal places.
+
+- <b>test_format_date_columns:</b>
+- - <b>Purpose:</b> Ensures that the _format_date_columns transformer correctly formats date columns to the 'YYYY-MM-DD' format.
+- - <b>How it works:</b> It creates a sample DataFrame with date columns and applies the _format_date_columns transformer. The test asserts that all date columns in the resulting DataFrame have been formatted to the 'YYYY-MM-DD' format.
+
+- <b>test_transform_data_stock:</b>
+- - <b>Purpose:</b> Verifies that the _apply_transformers function correctly transforms the raw stock data.
+- - <b>How it works:</b> It takes the fake_stock fixture, and passes it to the _apply_transformers function. The test asserts that the all the transformers are applied to the stock data.
+
+- <b>test_transform_data_news:</b>
+- - <b>Purpose:</b> Verifies that the _apply_transformers function correctly transforms the raw news data.
+- - <b>How it works:</b> It passes the fake_news fixture to the _apply_transformers function. The test asserts that the all the transformers are applied to the news data.
+
+- <b>test_ingest_transformed_data_success:</b>
+- - <b>Purpose:</b> Ensures that the ingest_transformed_data function correctly ingests the transformed data.
+- - <b>How it works:</b> It creates mock raw_stock and raw_news dictionaries containing the fake data and passes them to the ingest_transformed_data function. The test asserts that the output dictionaries are not empty and all functions are applied correctly.

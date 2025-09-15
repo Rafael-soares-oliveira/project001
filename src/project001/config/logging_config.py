@@ -1,8 +1,8 @@
 import logging
-import os
-from pathlib import Path
 import logging.config
 from datetime import datetime
+from pathlib import Path
+
 
 class PipelineNameFilter(logging.Filter):
     def __init__(self, pipeline_name: str):
@@ -29,7 +29,7 @@ class PipelineNameFilter(logging.Filter):
             name_parts = record.name.split('.')
             if len(name_parts) >= 3 and name_parts[0] == 'kedro' and name_parts[1] == 'pipeline':
                 self.pipeline_name = name_parts[2]
-        
+
         record.pipeline_name = self.pipeline_name
         return True
 
@@ -46,12 +46,12 @@ def get_logging_config(pipeline_name: str) -> logging.Logger:
     # Create logs directory with date subfolder if it doesn't exist
     logs_dir = Path("logs")
     logs_dir.mkdir(exist_ok=True)
-    
+
     # Create date subfolder (format: DD_MM_YYYY)
     current_date = datetime.now().strftime("%d_%m_%Y")
     date_logs_dir = logs_dir / current_date
     date_logs_dir.mkdir(exist_ok=True)
-    
+
     # Simple logging configuration
     logging_config = {
         "version": 1,
@@ -112,10 +112,10 @@ def get_logging_config(pipeline_name: str) -> logging.Logger:
             "handlers": ["console", "log_file"]
         }
     }
-    
+
     # Apply the logging configuration
     logging.config.dictConfig(logging_config)
-    
+
     # Return the logger for the project
     return logging.getLogger("project001")
 
